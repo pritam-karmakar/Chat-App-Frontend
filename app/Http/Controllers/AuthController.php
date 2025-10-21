@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -13,8 +14,11 @@ class AuthController extends Controller
         return view('signup', compact('countryCodes'));
     }
 
-    public function showLoginForm()
-    {
-        return 123;
+    public function newAuthSignup(Request $request) {
+        $response = Http::post('http://127.0.0.1:3000/api/auth/signup', [
+            'country_code' => $request->input('countryCode'),
+            'mobile_number' => $request->input('mobileNumber'),
+        ]);
+        return $response->json();
     }
 }

@@ -20,13 +20,9 @@
                             <div class="input-group mb-2 position-relative">
                                 <span class="input-group-addon">                                        
                                     <select class="form-select form-select-sm" wire:model.live="countryCode">
-                                        @foreach (File::json(public_path('/country-codes/codes.json')) as $country)
-                                            <option {{ ($country == '+91') ? 'selected' : '' }} value="{{ $country }}">{{ $country }}</option>
+                                        @foreach (File::json(public_path('/country-codes/codes.json')) as $countryCode)
+                                                <option value="{{ $countryCode }}" >{{ $countryCode }}</option>
                                         @endforeach
-                                        {{-- <option>+1</option>
-                                        <option>+44</option>
-                                        <option>+61</option>
-                                        <option>+91</option> --}}
                                     </select>
                                 </span>
                                 <input type="tel" id="mobile_number" wire:model.live="mobileNumber" placeholder="e.g. 97845 63218" class="form-control">
@@ -40,16 +36,23 @@
                     </div>
                 </div>
 
-                <div class="form-wrap form-wrap-checkbox mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="form-check form-check-md mb-0">
-                            <input class="form-check-input mt-0" type="checkbox" wire:model.live="termsAccepted">
+                <div class="mb-3">
+                    <div class="form-wrap form-wrap-checkbox">
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-md mb-0">
+                                <input class="form-check-input mt-0" type="checkbox" value="accepted" wire:model.live="termsAccepted">
+                            </div>
+                            <p class=" mb-0 ">I agree to
+                                <a href="javascript:void(0)" class="link-primary">Terms of use </a>&
+                                <a href="javascript:void(0)" class="link-primary">Privacy policy </a>
+                            </p>
                         </div>
-                        <p class=" mb-0 ">I agree to
-                            <a href="javascript:void(0)" class="link-primary">Terms of use </a>&
-                            <a href="javascript:void(0)" class="link-primary">Privacy policy </a>
-                        </p>
                     </div>
+                    @error('termsAccepted')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
