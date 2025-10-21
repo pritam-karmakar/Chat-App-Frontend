@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Http\Controllers\AuthController;
 
 class SignUp extends Component
 {
@@ -16,12 +17,15 @@ class SignUp extends Component
         return view('livewire.sign-up');
     }
 
-    public function signupWithMobileNumber () {
+    public function signUp () {
         $this->validate([
-            'mobile_number' => 'required|regex:/^\+\d{1,3}\s\d{4,14}(?:x.+)?$/',
+            'mobileNumber' => 'required|regex:/^\+\d{1,3}\s\d{4,14}(?:x.+)?$/',
         ],[
-            'mobile_number.required' => 'The phone number field is required.',
-            'mobile_number.regex' => 'The phone number format is invalid. Please use the format +<country code> <number>.', 
+            'mobileNumber.required' => 'The phone number field is required.',
+            'mobileNumber.regex' => 'The phone number format is invalid. Please use the format +<country code> <number>.', 
         ]);
+
+        // $newAuth = new AuthController();
+        // return $newAuth->showLoginForm();
     }
 }

@@ -12,4 +12,9 @@ class AuthController extends Controller
         $countryCodes = File::json(public_path('/country-codes/codes.json'));
         return view('signup', compact('countryCodes'));
     }
+
+    public function showLoginForm()
+    {
+        return 123;
+    }
 }
