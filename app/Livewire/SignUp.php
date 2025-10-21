@@ -25,7 +25,7 @@ class SignUp extends Component
             'termsAccepted.accepted' => 'You must accept the terms and conditions.',
         ]);
 
-        // $newAuth = new AuthController();
-        // return $newAuth->showLoginForm();
+        $newAuth = new AuthController();
+        return $newAuth->showLoginForm();
     }
 }
