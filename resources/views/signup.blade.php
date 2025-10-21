@@ -26,6 +26,7 @@
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="600">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>DreamsChat</title>
 
@@ -58,7 +59,8 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('build/css/style.css') }}"></head>
-    {{-- @livewireStyles --}}
+    
+    @livewireStyles
 
 <body>
 
@@ -71,7 +73,7 @@
                         <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap login-bg1 ">
                             <div class="col-md-9 mx-auto p-4">
                                 
-                                <livewire:sign-up  />
+                                <livewire:sign-up  /> {{-- Form Component --}}
 
                             </div>
                         </div>
@@ -141,8 +143,8 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('build/js/script.js') }}" ></script>
-    {{-- @livewireScripts --}}
-    {{-- <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="196b6cba7ff4f88955584f5c-|49" defer></script> --}}
+    @livewireScripts
+    {{-- <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="196b6cba7ff4f88955584f5c-|49" defer></script> --}}
 </body>
 
 </html>

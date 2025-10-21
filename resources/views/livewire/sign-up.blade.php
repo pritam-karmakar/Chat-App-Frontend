@@ -1,5 +1,6 @@
 
 <form wire:submit.prevent="signUp" class="flex-fill">
+    @csrf
     <div>
         <div class=" mx-auto mb-5 text-center">
             <img src="{{ asset('build/img/full-logo.svg') }}" class="img-fluid" alt="Logo">
@@ -9,7 +10,7 @@
 
                 <div class=" mb-4">
                     <h2 class="mb-2">Register</h2>
-                    <p class="mb-0 fs-16">Sign up to share moments with friends!</p>
+                    <p class="mb-0 fs-16">Sign up to share moments with your friends!</p>
                 </div>
 
                 <div class="row">
@@ -18,7 +19,7 @@
                             <label class="form-label">Phone Number <span class="text-danger">*<span></label>
                             <div class="input-group mb-2 position-relative">
                                 <span class="input-group-addon">                                        
-                                    <select class="form-select form-select-sm" wire:model="countryCode">
+                                    <select class="form-select form-select-sm" wire:model.live="countryCode">
                                         @foreach (File::json(public_path('/country-codes/codes.json')) as $country)
                                             <option {{ ($country == '+91') ? 'selected' : '' }} value="{{ $country }}">{{ $country }}</option>
                                         @endforeach
@@ -28,7 +29,7 @@
                                         <option>+91</option> --}}
                                     </select>
                                 </span>
-                                <input type="tel" id="mobile_number" wire:model="mobileNumber" placeholder="e.g. 97845 63218" class="form-control">
+                                <input type="tel" id="mobile_number" wire:model.live="mobileNumber" placeholder="e.g. 97845 63218" class="form-control">
                             </div>
                             @error('mobileNumber')
                                 <div class="text-danger">
@@ -42,7 +43,7 @@
                 <div class="form-wrap form-wrap-checkbox mb-3">
                     <div class="d-flex align-items-center">
                         <div class="form-check form-check-md mb-0">
-                            <input class="form-check-input mt-0" type="checkbox" wire:model="termsAccepted">
+                            <input class="form-check-input mt-0" type="checkbox" wire:model.live="termsAccepted">
                         </div>
                         <p class=" mb-0 ">I agree to
                             <a href="javascript:void(0)" class="link-primary">Terms of use </a>&
@@ -52,7 +53,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <button type="submit" class="btn btn-primary w-100 justify-content-center" wire:model="signUp">Sign Up</button>
+                    <button type="submit" class="btn btn-primary w-100 justify-content-center">Sign Up</button>
                 </div>
 
                 {{-- <div class="login-or mb-3">
