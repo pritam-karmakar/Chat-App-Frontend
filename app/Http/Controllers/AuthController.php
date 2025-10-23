@@ -19,6 +19,20 @@ class AuthController extends Controller
             'country_code' => $request->input('countryCode'),
             'mobile_number' => $request->input('mobileNumber'),
         ]);
-        return $response->json();
+
+        // Get HTTP status code
+        $statusCode = $response->getStatusCode();
+
+        // Get body and decode JSON
+        $body = (string) $response->getBody();
+        $responseData = json_decode($body, true); // associative array
+
+        if ($statusCode === 201 && isset($responseData['success']) && $responseData['success'] === true):
+            $responseData['message'] = 'OTP has been sent to your mobile number.';        
+        else:
+            $responseData['message'] = 'An error occurred. Please try again later.';
+        endif;
+
+        return $responseData;
     }
 }

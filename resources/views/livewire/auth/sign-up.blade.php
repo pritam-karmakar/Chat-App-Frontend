@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label class="form-label">Phone Number <span class="text-danger">*<span></label>
+                            <label class="form-label">Mobile Number <span class="text-danger">*<span></label>
                             <div class="input-group mb-2 position-relative">
                                 <span class="input-group-addon">                                        
                                     <select class="form-select form-select-sm" wire:model.live="countryCode">
@@ -32,6 +32,11 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            @if(session()->has('mobileNumberError'))
+                                <div class="text-danger">
+                                    {{ session('mobileNumberError') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -81,7 +86,7 @@
             </div>
         </div>
         <div class="mt-5 text-center">
-            <p class="mb-0 text-gray-9">Already have a account? <a href="signin.html" class="link-primary">Sign In</a></p>
+            <p class="mb-0 text-gray-9">Already have a account? <a href="javascript:void(0)" class="link-primary">Sign In</a></p>
         </div>
     </div>
 </form>

@@ -59,7 +59,13 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('build/css/style.css') }}"></head>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"></head>
     
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}"></head>
+
     @livewireStyles
 
 <body>
@@ -73,7 +79,7 @@
                         <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap login-bg1 ">
                             <div class="col-md-9 mx-auto p-4">
                                 
-                                <livewire:sign-up  /> {{-- Form Component --}}
+                                <livewire:auth.sign-up /> {{-- Form Component --}}
 
                             </div>
                         </div>
@@ -112,11 +118,11 @@
 
                 </div>
 
-
-
             </div>
         </div>        
     </div>
+    <div id="toastr-root"></div>
+    
     <!-- /Main Wrapper -->
 	
     <!-- jQuery -->
@@ -143,6 +149,27 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('build/js/script.js') }}" ></script>
+
+    <!-- Auth JS -->
+    <script src="{{ asset('js/auth.js') }}" ></script>
+
+    <!-- Toastr JS -->
+    <script type="module" src="{{ asset('js/toastr.js') }}"></script>
+
+    <script type="module">
+        import toast from "https://cdn.skypack.dev/react-hot-toast@2.2.0";
+        
+        // Listen for Livewire's browser event
+        Livewire.on('toast', ({ type, message }) => {
+            // Check if the toast object has this method
+            if (typeof toast[type] === "function") {
+                toast[type](message); // dynamically call toast.success, toast.error, etc.
+            } else {
+                toast(message); // fallback if type is invalid
+            }
+        });
+    </script>
+
     @livewireScripts
     {{-- <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="196b6cba7ff4f88955584f5c-|49" defer></script> --}}
 </body>

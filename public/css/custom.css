@@ -1,0 +1,33 @@
+.digit-group {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 60%;
+}
+
+.digit-group input {
+	width: 30px;
+	height: 40px;
+	background-color: lighten('#0f0f1a', 5%);
+	border: 1px solid #dee2e6;
+	line-height: 50px;
+	text-align: center;
+	font-size: 17px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 200;
+	color: #141B27;
+	margin: 0 2px;
+	border-radius: 5px;
+}
+
+.digit-group .splitter {
+	padding: 0 5px;
+	color: #dee2e6;
+	font-size: 24px;
+}
+
+.prompt {
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: white;
+}
