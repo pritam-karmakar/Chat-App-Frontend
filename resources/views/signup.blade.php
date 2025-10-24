@@ -79,7 +79,11 @@
                         <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap login-bg1 ">
                             <div class="col-md-9 mx-auto p-4">
                                 
-                                <livewire:auth.sign-up /> {{-- Form Component --}}
+                                @if (request()->route('otp') == 'otp')
+                                    <livewire:auth.otp /> {{-- Form Component --}}
+                                @else
+                                    <livewire:auth.sign-up /> {{-- Form Component --}}
+                                @endif
 
                             </div>
                         </div>
@@ -163,7 +167,7 @@
         Livewire.on('toast', ({ type, message }) => {
             // Check if the toast object has this method
             if (typeof toast[type] === "function") {
-                toast[type](message); // dynamically call toast.success, toast.error, etc.
+                toast[type](message); // dynamically call toasts
             } else {
                 toast(message); // fallback if type is invalid
             }

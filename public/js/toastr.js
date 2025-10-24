@@ -5,6 +5,7 @@ import toast, { Toaster } from "https://cdn.skypack.dev/react-hot-toast@2.2.0";
 // You can create a simple App just to hold the Toaster
 const App = () => {
     return React.createElement(Toaster, {
+        timeout: 5000,
         position: "left-bottom"
     });
 };

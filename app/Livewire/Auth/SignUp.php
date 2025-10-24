@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Livewire\Auth\Otp;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
@@ -18,33 +19,29 @@ class SignUp extends Component
     }
 
     public function signUp () {
-        $validatedData = $this->validate([
-            'countryCode'  => 'required',
-            'mobileNumber' => 'required|regex:/^\d[0-9]+?$/',
-            'termsAccepted' => 'accepted',
-        ],[
-            'countryCode.required' => 'The country code field is required.',
-            'mobileNumber.required' => 'The phone number field is required.',
-            'mobileNumber.regex' => 'The phone number format is invalid. Please use the format <number>.',
-            'termsAccepted.accepted' => 'You must accept the terms and conditions.',
-        ]);
-
-        $newAuthSignup = new AuthController();
-        $registrationResponse = $newAuthSignup->newAuthSignup(new Request($validatedData));
-        if ($registrationResponse['success'] !== true):
-            session()->flash('mobileNumberError', $registrationResponse['message']);
-            $this->dispatch('toast', [
-                'type' => 'error',
-                'message' => $registrationResponse['message']
+        try {
+            $validatedData = $this->validate([
+                'countryCode'  => 'required|regex:/^\+\d[0-9]+?$/',
+                'mobileNumber' => 'required|regex:/^\d[0-9]+?$/',
+                'termsAccepted' => 'accepted',
+            ],[
+                'countryCode.required' => 'The country code field is required.',
+                'mobileNumber.required' => 'The phone number field is required.',
+                'mobileNumber.regex' => 'The phone number format is invalid. Please use the format number.',
+                'termsAccepted.accepted' => 'You must accept the terms and conditions.',
             ]);
-        else:
-            session()->flash('OtpSent', $registrationResponse['message']);
-            $this->render = "livewire.auth.otp";
-            $this->dispatch('toast', type: 'success', message: $registrationResponse['message']);
-            // [
-            //     'type' => 'success',
-            //     'message' => $registrationResponse['message']
-            // ]);
-        endif;
+
+            $newAuthSignup = new AuthController();
+            $registrationResponse = $newAuthSignup->newAuthSignup(new Request($validatedData));
+            if (!empty($registrationResponse) && !empty($registrationResponse['success']) && $registrationResponse['success'] !== true):
+                $this->dispatch('toast', type: 'error', message: $registrationResponse['message']);
+            else:
+                $this->render = "livewire.auth.otp";
+                session('sentOtp', true);
+                $this->dispatch('toast', type: 'success', message: $registrationResponse['message']);
+            endif;
+        } catch (Exception $e) {
+            $this->dispatch('toast', type: 'error', message: 'Something went wrong! Try again later.');
+        }
     }
 }
