@@ -10,15 +10,15 @@ use App\Http\Controllers\AuthController;
 class SignUp extends Component
 {
     public $countryCode = '+91', $mobileNumber, $termsAccepted;
-    public $otp1, $otp2, $otp3, $otp4, $otp5, $otp6;
+    public $otp = [];
 
-    private $render = "livewire.auth.sign-up";
+    public $render = "livewire.auth.sign-up";
 
-    public function render() {
+    public function render(): view {
         return view($this->render);
     }
 
-    public function signUp () {
+    public function userSignUp (): void {
         try {
             $validatedData = $this->validate([
                 'countryCode'  => 'required|regex:/^\+\d[0-9]+?$/',
@@ -31,17 +31,23 @@ class SignUp extends Component
                 'termsAccepted.accepted' => 'You must accept the terms and conditions.',
             ]);
 
-            $newAuthSignup = new AuthController();
-            $registrationResponse = $newAuthSignup->newAuthSignup(new Request($validatedData));
+            $newUserSignup = new AuthController();
+            $registrationResponse = $newUserSignup->newUserSignup(new Request($validatedData));
             if (!empty($registrationResponse) && !empty($registrationResponse['success']) && $registrationResponse['success'] !== true):
                 $this->dispatch('toast', type: 'error', message: $registrationResponse['message']);
             else:
-                $this->render = "livewire.auth.otp";
-                session('sentOtp', true);
-                $this->dispatch('toast', type: 'success', message: $registrationResponse['message']);
+                $this->render = "livewire.auth.otp"; // Render new component
+                $this->dispatch('route', newTitle: 'success', newUrl: 'signup.otp'); // Changing route
+                $this->dispatch('toast', type: 'success', message: $registrationResponse['message']); // Triggering toastr
             endif;
         } catch (Exception $e) {
             $this->dispatch('toast', type: 'error', message: 'Something went wrong! Try again later.');
         }
     }
+
+    public function verifyOtp () {
+        $newOtpVerfication = new Otp();
+        return $newOtpVerfication->verifyOtp();
+    }
+
 }

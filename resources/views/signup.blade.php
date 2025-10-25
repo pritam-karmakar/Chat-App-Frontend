@@ -160,19 +160,8 @@
     <!-- Toastr JS -->
     <script type="module" src="{{ asset('js/toastr.js') }}"></script>
 
-    <script type="module">
-        import toast from "https://cdn.skypack.dev/react-hot-toast@2.2.0";
-        
-        // Listen for Livewire's browser event
-        Livewire.on('toast', ({ type, message }) => {
-            // Check if the toast object has this method
-            if (typeof toast[type] === "function") {
-                toast[type](message); // dynamically call toasts
-            } else {
-                toast(message); // fallback if type is invalid
-            }
-        });
-    </script>
+    <!-- Manage URL JS -->
+    <script type="module" src="{{ asset('js/manage-url.js') }}"></script>
 
     @livewireScripts
     {{-- <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="196b6cba7ff4f88955584f5c-|49" defer></script> --}}

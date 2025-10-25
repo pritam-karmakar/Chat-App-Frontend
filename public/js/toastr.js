@@ -12,3 +12,14 @@ const App = () => {
 
 // Render the Toaster
 ReactDOM.render(React.createElement(App), document.getElementById("toastr-root"));
+
+
+// Listen for Livewire's browser event
+Livewire.on('toast', ({ type, message }) => {
+    // Check if the toast object has this method
+    if (typeof toast[type] === "function") {
+        toast[type](message); // dynamically call toasts
+    } else {
+        toast(message); // fallback if type is invalid
+    }
+});

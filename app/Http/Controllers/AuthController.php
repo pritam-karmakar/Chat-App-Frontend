@@ -14,8 +14,8 @@ class AuthController extends Controller
         return view('signup', compact('countryCodes'));
     }
 
-    public function newAuthSignup(Request $request) {
-        $response = Http::post('http://localhost:3000/api/auth/signup', [
+    public function newUserSignup(Request $request) {
+        $response = Http::post('http://localhost:3000/api/auth/sign-up', [
             'country_code' => $request->input('countryCode'),
             'mobile_number' => $request->input('mobileNumber'),
         ]);
@@ -35,4 +35,9 @@ class AuthController extends Controller
 
         return $responseData;
     }
+
+    public function userOtpVerification () {
+        
+    }
+
 }

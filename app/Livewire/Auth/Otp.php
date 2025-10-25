@@ -3,10 +3,13 @@
 namespace App\Livewire\Auth;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Validator;
 
 class Otp extends Component
 {
-    public $otp1, $otp2, $otp3, $otp4, $otp5, $otp6;
+    public $otp = ['', '', '', '', '', ''];
 
     public function render()
     {
@@ -14,18 +17,26 @@ class Otp extends Component
     }
 
     public function verifyOtp() {
-        
-        return;
-        $otp = implode('', $this->otp);
-        // Call the API to verify the OTP
-        $response = Http::post('https://your-api-url.com/verify-otp', [
-            'otp' => $otp,
-        ]);
+        try {
+            $otp = implode('', $this->otp);
 
-        if ($response->successful()) {
-            // Handle successful OTP verification
-        } else {
-            // Handle failed OTP verification
+            $validatedData = $this->validate([
+                'otp', 'required|numeric|digits:5'
+            ]);
+
+            $newUserSignup = new AuthController();
+            $registrationResponse = $newUserSignup->userOtpVerification(new Request($validatedData));
+            
+            if (!empty($registrationResponse) && !empty($registrationResponse['success']) && $registrationResponse['success'] !== true):
+                $this->dispatch('toast', type: 'error', message: $registrationResponse['message']);
+            else:
+                $this->render = "livewire.auth.otp"; // Render new component
+                $this->dispatch('route', newTitle: 'success', newUrl: 'signup.otp'); // Changing route
+                $this->dispatch('toast', type: 'success', message: $registrationResponse['message']); // Triggering toastr
+            endif;
+        } catch (Exception $e) {
+            $this->dispatch('toast', type: 'error', message: 'Something went wrong! Try again later.');
         }
     }
+    
 }

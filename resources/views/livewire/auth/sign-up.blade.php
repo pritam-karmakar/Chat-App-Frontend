@@ -1,5 +1,5 @@
 
-<form wire:submit.prevent="signUp" class="flex-fill">
+<form wire:submit.prevent="userSignUp" class="flex-fill">
     @csrf
     <div>
         <div class=" mx-auto mb-5 text-center">
