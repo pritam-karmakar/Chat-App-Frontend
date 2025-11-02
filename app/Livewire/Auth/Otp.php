@@ -27,15 +27,13 @@ class Otp extends Component
 
             $newVerifyOtp = new AuthController();
             $otpVerificationResponse = $newVerifyOtp->userOtpVerification(new Request($request));
-
+            
             if (!empty($otpVerificationResponse) && !empty($otpVerificationResponse['success']) && $otpVerificationResponse['success'] !== true):
                 $this->dispatch('toast', type: 'error', message: $otpVerificationResponse['message']);
+                return redirect()->route('signup');
             else:
-                $this->dispatch('toast', type: 'success', message: $otpVerificationResponse['message']); // Triggering toastr
-                // exit;
-                // $this->render = "livewire.auth.otp"; // Render new component
-                // $this->dispatch('route', newTitle: 'success', newUrl: 'chat.dashboard'); // Changing route
-                // $this->dispatch('toast', type: 'success', message: $otpVerificationResponse['message']); // Triggering toastr
+                $this->dispatch('toast', type: 'success', message: $otpVerificationResponse); // Triggering toastr
+                return redirect()->route('chat.dashboard');
             endif;
         } catch (Exception $e) {
             $this->dispatch('toast', type: 'error', message: 'Something went wrong! Try again later.');

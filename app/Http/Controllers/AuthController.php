@@ -36,7 +36,7 @@ class AuthController extends Controller
         return $responseData;
     }
 
-    public function userOtpVerification (Request $request): array {
+    public function userOtpVerification (Request $request) {
         $userEnteredOtp = $request->input('otp');
         $verificationToken = session('otpVerificationToken');
 
@@ -53,10 +53,12 @@ class AuthController extends Controller
         $responseData = json_decode($body, true); // associative array
 
         if ($response->successful() && $statusCode === 200):
+            session([
+                'auth_token' => $responseData['data']['token']
+            ]);
             $responseData['message'] = 'User logged in successfully.';
         elseif(!$response->successful() && $statusCode === 500):
-            session()->forget('otpVerificationToken');
-            return redirect()->route('signup');
+            // session()->forget('otpVerificationToken');
         endif;
 
         return $responseData;
