@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from dreamschat.dreamstechnologies.com/laravel/template/public/status by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:02:05 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,38 +30,38 @@
 	<title>DreamsChat</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="build/img/favicon.png">
+    <link rel="icon" href="{{ asset('build/img/favicon.png') }}">
 
   
     <!-- Theme Script Js -->
-   <script src="build/js/theme-script.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
-	   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="build/css/bootstrap.min.css">
+   <script src="{{ asset('build/js/theme-script.js') }}" ></script>
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{{ asset('build/css/bootstrap.min.css') }}">
 
    <!-- Feathericon CSS -->
-   <link rel="stylesheet" href="build/css/feather.css">
+   <link rel="stylesheet" href="{{ asset('build/css/feather.css') }}">
    
    <!-- Fontawesome CSS -->
-   <link rel="stylesheet" href="build/plugins/fontawesome/css/fontawesome.min.css">
-   <link rel="stylesheet" href="build/plugins/fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="{{ asset('build/plugins/fontawesome/css/fontawesome.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('build/plugins/fontawesome/css/all.min.css') }}">
 
    <!-- Swiper CSS -->
-   <link rel="stylesheet" href="build/plugins/swiper/swiper.min.css">
+   <link rel="stylesheet" href="{{ asset('build/plugins/swiper/swiper.min.css') }}">
 
    <!-- FancyBox CSS -->
-   <link rel="stylesheet" href="build/plugins/fancybox/jquery.fancybox.min.css">
+   <link rel="stylesheet" href="{{ asset('build/plugins/fancybox/jquery.fancybox.min.css') }}">
 
    <!-- TablerIcon CSS -->
-   <link rel="stylesheet" href="build/plugins/tabler-icons/tabler-icons.min.css">
+   <link rel="stylesheet" href="{{ asset('build/plugins/tabler-icons/tabler-icons.min.css') }}">
 
    <!-- Select CSS -->
-   <link rel="stylesheet" href="build/plugins/select2/css/select2.min.css">
+   <link rel="stylesheet" href="{{ asset('build/plugins/select2/css/select2.min.css') }}">
 
    <!-- Datetimepicker CSS -->
-   <link rel="stylesheet" href="build/css/bootstrap-datetimepicker.min.css">
+   <link rel="stylesheet" href="{{ asset('build/css/bootstrap-datetimepicker.min.css') }}">
 
   <!-- Style CSS -->
-   <link rel="stylesheet" href="build/css/style.css"></head>
+   <link rel="stylesheet" href="{{ asset('build/css/style.css') }}"></head>
 
 <body>
 
@@ -6642,32 +6641,30 @@
 		
     <!-- /Main Wrapper -->
 	
-    <!-- jQuery -->
-<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="build/js/jquery-3.7.1.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<!-- jQuery -->
+<script src="{{ asset('build/js/jquery-3.7.1.min.js') }}" ></script>
         
 <!-- Bootstrap Core JS -->
-<script src="build/js/bootstrap.bundle.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/js/bootstrap.bundle.min.js') }}" ></script>
 
 <!-- Slimscroll JS -->
-<script src="build/plugins/slimscroll/jquery.slimscroll.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/plugins/slimscroll/jquery.slimscroll.min.js') }}" ></script>
 
 <!-- Swiper JS -->
-<script src="build/plugins/swiper/swiper.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/plugins/swiper/swiper.min.js') }}" ></script>
 
 <!-- FancyBox JS -->
-<script src="build/plugins/fancybox/jquery.fancybox.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/plugins/fancybox/jquery.fancybox.min.js') }}" ></script>
 
 <!-- Select JS -->
-<script src="build/plugins/select2/js/select2.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/plugins/select2/js/select2.min.js') }}" ></script>
 
 <!-- Datetimepicker JS -->
-<script src="build/js/moment.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
-<script src="build/js/bootstrap-datetimepicker.min.js" type="e6739b8090f697b30e007fb5-text/javascript"></script>
+<script src="{{ asset('build/js/moment.min.js') }}" ></script>
+<script src="{{ asset('build/js/bootstrap-datetimepicker.min.js') }}" ></script>
 
 <!-- Custom JS -->
-<script src="build/js/script.js" type="e6739b8090f697b30e007fb5-text/javascript"></script> 	
-<script src="../../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="e6739b8090f697b30e007fb5-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"3ca157e612a14eccbb30cf6db6691c29","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script src="{{ asset('build/js/script.js') }}" ></script> 	
 </body>
 
-<!-- Mirrored from dreamschat.dreamstechnologies.com/laravel/template/public/status by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Oct 2025 06:02:20 GMT -->
 </html>

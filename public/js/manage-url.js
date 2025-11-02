@@ -1,1 +1,3 @@
-Livewire.on('route', ({ newTitle, newUrl }) => { history.pushState("OTP Verification", newTitle, newUrl.replaceAll('.', '/')); });
+Livewire.on('route', ({ newTitle, newUrl }) => { 
+    history.pushState("OTP Verification", newTitle, newUrl.replaceAll('.', '/'));
+});

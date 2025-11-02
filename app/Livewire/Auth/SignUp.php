@@ -14,11 +14,11 @@ class SignUp extends Component
 
     public $render = "livewire.auth.sign-up";
 
-    public function render(): view {
+    public function render() {
         return view($this->render);
     }
 
-    public function userSignUp (): void {
+    public function userSignUp () {
         try {
             $validatedData = $this->validate([
                 'countryCode'  => 'required|regex:/^\+\d[0-9]+?$/',
@@ -33,12 +33,13 @@ class SignUp extends Component
 
             $newUserSignup = new AuthController();
             $registrationResponse = $newUserSignup->newUserSignup(new Request($validatedData));
-            if (!empty($registrationResponse) && !empty($registrationResponse['success']) && $registrationResponse['success'] !== true):
-                $this->dispatch('toast', type: 'error', message: $registrationResponse['message']);
-            else:
+
+            if (!empty($registrationResponse['success']) && $registrationResponse['success'] == true):
                 $this->render = "livewire.auth.otp"; // Render new component
                 $this->dispatch('route', newTitle: 'success', newUrl: 'signup.otp'); // Changing route
                 $this->dispatch('toast', type: 'success', message: $registrationResponse['message']); // Triggering toastr
+            else:
+                $this->dispatch('toast', type: 'error', message: $registrationResponse['message']);
             endif;
         } catch (Exception $e) {
             $this->dispatch('toast', type: 'error', message: 'Something went wrong! Try again later.');

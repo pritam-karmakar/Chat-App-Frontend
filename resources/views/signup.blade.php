@@ -79,7 +79,7 @@
                         <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap login-bg1 ">
                             <div class="col-md-9 mx-auto p-4">
                                 
-                                @if (request()->route('otp') == 'otp')
+                                @if (session('otpVerificationToken') && request()->route('otp') == 'otp')
                                     <livewire:auth.otp /> {{-- Form Component --}}
                                 @else
                                     <livewire:auth.sign-up /> {{-- Form Component --}}
