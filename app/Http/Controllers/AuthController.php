@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Http;
 class AuthController extends Controller
 {
     public function showSignUpForm(): View {
-        $countryCodes = File::json(public_path('/country-codes/codes.json'));
-        return view('signup', compact('countryCodes'));
+        return view('signup');
     }
 
     public function newUserSignup(Request $request): array {
@@ -62,6 +61,10 @@ class AuthController extends Controller
         endif;
 
         return $responseData;
+    }
+
+    public function showSignInForm () {
+        return view('signin');
     }
 
 }

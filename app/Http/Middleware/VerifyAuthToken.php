@@ -19,7 +19,7 @@ class VerifyAuthToken
 
         // If no token, redirect to login
         if (empty($token)) {
-            return redirect()->route('signup');
+            return redirect()->route('auth.signup');
         }
         return $next($request);
     }

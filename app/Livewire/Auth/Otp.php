@@ -30,7 +30,7 @@ class Otp extends Component
             
             if (!empty($otpVerificationResponse) && !empty($otpVerificationResponse['success']) && $otpVerificationResponse['success'] !== true):
                 $this->dispatch('toast', type: 'error', message: $otpVerificationResponse['message']);
-                return redirect()->route('signup');
+                return redirect()->route('auth.signup');
             else:
                 $this->dispatch('toast', type: 'success', message: $otpVerificationResponse); // Triggering toastr
                 return redirect()->route('chat.dashboard');

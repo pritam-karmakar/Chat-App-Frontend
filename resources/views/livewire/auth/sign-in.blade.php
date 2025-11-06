@@ -9,8 +9,8 @@
             <div class="card-body">
 
                 <div class=" mb-4">
-                    <h2 class="mb-2">Register</h2>
-                    <p class="mb-0 fs-16">Sign up to share moments with your friends!</p>
+                    <h2 class="mb-2">Login</h2>
+                    <p class="mb-0 fs-16">Sign in to share moments with your friends!</p>
                 </div>
 
                 <div class="row">
@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="mt-5 text-center">
-            <p class="mb-0 text-gray-9">Already have a account? <a href="{{ route('auth.signin') }}" class="link-primary">Sign In</a></p>
+            <p class="mb-0 text-gray-9">Already have a account? <a href="javascript:void(0)" class="link-primary">Sign In</a></p>
         </div>
     </div>
 </form>
